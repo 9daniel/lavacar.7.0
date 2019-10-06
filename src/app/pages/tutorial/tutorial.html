@@ -1,0 +1,49 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button color='primary' (click)="startApp()" [hidden]="!showSkip">Pular</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-slides #slides (ionSlideWillChange)="onSlideChangeStart($event)" pager="false">
+    <ion-slide>
+      <img src="assets/img/logo3.1.png" />
+      <ion-card>
+      <p>
+        Este é um aplicativo onde o cliente pode marcar o dia, e horário, para lavar o seu veículo e ainda tem a opção de escolher se quer levá-lo ou selecionar um determinado funcionário para ir buscar.
+      </p>
+    </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="assets/img/banner2_edit.jpg" class="slide-image" />
+      <ion-card>
+      <h2>
+        Como funciona<br> O aplicativo</h2>
+      <p>Selecione um dos icones que represente seu veiculo e escolha o tipo de lavagem se é simples ou completa... </p>
+    </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="assets/img/icon-ajuda.png" class="slide-image" />
+      <ion-card>
+      <h2>
+        Selecione o dia e <br>Horário Disponível</h2>
+      <p>Você deverá escolher um dos dias e horários que estão disponíveis em nosso sistema.</p>
+    </ion-card>
+    </ion-slide>
+
+    <ion-slide>
+      <img src="assets/img/ICON-RESERVA.png" class="slide-image" />
+      <ion-card>
+      <p>Faça login ou crie uma conta. E selecionar a forma de pagamento, se vai pagar em dinheiro ou no cartão, e se vai precisar de troco.</p>
+    </ion-card>
+      <ion-button fill="clear" (click)="startApp()">
+        Vamos Começar
+        <ion-icon slot="end" name="arrow-forward"></ion-icon>
+      </ion-button>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

@@ -1,0 +1,233 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Fazer sua Reserva</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="presentPopover($event)">
+        <ion-icon slot="icon-only" name="more"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list lines="none">
+        
+        <ion-card>
+        <ion-card>
+      <ion-item>
+        <ion-icon name="calendar" slot="start"></ion-icon>
+        <ion-label position="stacked">Calendário</ion-label>
+      <ion-datetime value="2019-06-13" min="2019-06" max="2024"
+      [dayShortNames]="customDayShortNames"
+      displayFormat="MMM DD, YYYY"
+      monthShortNames="Jan, Fev, Mar, Abr, Mai, Jun, Jul, Ago, Set, Out, Nov, Dez"></ion-datetime>
+      </ion-item>
+    </ion-card>
+    <ion-card>
+      <ion-item>
+          <ion-icon name="alarm" slot="start"></ion-icon>
+        <ion-label>Horário da reserva</ion-label>
+        <ion-datetime min="08:30" max="17:00"
+        display-format="HH:mm"></ion-datetime>
+      </ion-item>
+    </ion-card>
+
+      
+        <ion-card>
+      <ion-item>
+        <ion-icon name="pin" slot="start"></ion-icon>
+        <ion-label position="stacked">SELECIONE UM DOS NOSSOS LAVACAR</ion-label>
+        <ion-select>
+          <ion-select-option value="JAHU" selected>JAHU, SP</ion-select-option>
+          <ion-select-option value="+">EM BREVE</ion-select-option>
+          <ion-select-option value="+">EM BREVE</ion-select-option>
+          <ion-select-option value="+">EM BREVE</ion-select-option>
+        </ion-select>
+      </ion-item>
+      </ion-card>
+    </ion-card>
+
+      
+      <div class="linha1"></div>
+      
+      <ion-item *ngFor="let itemDaLista of listaCar" style="text-align: center">
+          <ion-item lines="full" [routerLink]="itemDaLista.pagina" (click)=" tipoVeiculo = itemDaLista.tipo; pagamento(itemDaLista)" >
+          <span class="tamanhoTest">{{itemDaLista.nome}}</span>
+          <ion-chip slot="end">R${{itemDaLista.valor}},00</ion-chip>
+          
+          <ion-thumbnail slot="start"><ion-img [src]="itemDaLista.img"></ion-img></ion-thumbnail> 
+          </ion-item>
+      </ion-item>
+
+      <ion-item padding *ngIf="tipoVeiculo == null">
+        <img src="assets/img/selecione.jpg"/>
+      </ion-item>
+      
+        
+          <!-- Criamos uma div para separar o conteudo que pertence ao switch-->
+          <div [ngSwitch]="tipoVeiculo">
+        
+            <!--Carro-->
+            <ion-list *ngSwitchCase="'carro'">
+              <!-- Exibe somente se a variavel tenha o valor = usuario -->
+              <ion-list-header class="fundo1">Limpeza do Carro</ion-list-header>
+
+              <ion-card>
+                <ion-radio-group>
+                  <ion-item>
+                    <ion-label>Completo</ion-label>
+                    <ion-chip slot="end">R$350,00</ion-chip>
+                    <ion-radio slot="end" value="350" checked></ion-radio>
+                  </ion-item>
+              
+                  <ion-item>
+                    <ion-label>Simples</ion-label>
+                    <ion-chip slot="end">R$40,00</ion-chip>
+                    <ion-radio slot="end" value="40"></ion-radio>
+                  </ion-item>
+              
+                  <ion-item>
+                    <ion-label>A seco</ion-label>
+                    <ion-chip slot="end">R$120,00</ion-chip>
+                    <ion-radio slot="end" value="120"></ion-radio>
+                  </ion-item>
+                </ion-radio-group>
+              </ion-card>
+              
+              
+              <ion-card>
+              <ion-list>
+                <ion-item *ngFor="let limpeza of listaTipoLimpeza">
+                  <ion-label>{{limpeza.nome}}</ion-label>
+                  <ion-checkbox slot="end" [(ngModel)]="limpeza.isChecked"></ion-checkbox>
+                </ion-item>
+              </ion-list>
+            </ion-card>
+              <!--Acrescimo
+              
+              <ion-item *ngFor="let itemDaLista of listaVeiculo" style="text-align: center">
+                  <ion-item lines="full" [routerLink]="itemDaLista.pagina">
+                  <span slot="start" >{{itemDaLista.nome}}</span>
+                  <ion-chip slot="end">R$ {{itemDaLista.valor}},00</ion-chip>
+          
+                  </ion-item>
+              </ion-item>
+            
+              -->
+            
+
+            </ion-list>
+        
+            <!--Van-->
+            <ion-list *ngSwitchCase="'van'">
+              <!-- Exibe somente se a variavel tenha o valor = admin -->
+              <ion-list-header class="fundo2">Limpeza da Van</ion-list-header>
+
+              <ion-card>
+                <ion-radio-group>
+                  <ion-item>
+                    <ion-label>Completo</ion-label>
+                    <ion-chip slot="end">R$450,00</ion-chip>
+                    <ion-radio slot="end" value="450" checked></ion-radio>
+                  </ion-item>
+              
+                  <ion-item>
+                    <ion-label>Simples</ion-label>
+                    <ion-chip slot="end">R$60,00</ion-chip>
+                    <ion-radio slot="end" value="60"></ion-radio>
+                  </ion-item>
+              
+                  <ion-item>
+                    <ion-label>A seco</ion-label>
+                    <ion-chip slot="end">R$200,00</ion-chip>
+                    <ion-radio slot="end" value="200"></ion-radio>
+                  </ion-item>
+                </ion-radio-group>
+              </ion-card>
+
+              <ion-card>
+                  <ion-list>
+                    <ion-item *ngFor="let limpeza of listaTipoLimpeza">
+                      <ion-label>{{limpeza.nome}}</ion-label>
+                      <ion-checkbox slot="end" [(ngModel)]="limpeza.isChecked"></ion-checkbox>
+                    </ion-item>
+                  </ion-list>
+                </ion-card>
+<!--Acrescimo
+              <ion-item *ngFor="let itemDaLista of listaVeiculo" style="text-align: center">
+                  <ion-item lines="full" [routerLink]="itemDaLista.pagina">
+                  <span slot="start" >{{itemDaLista.nome}}</span>
+                  <ion-chip slot="end">R$ {{itemDaLista.valor}},00</ion-chip>
+          
+                  </ion-item>
+              </ion-item>
+              -->
+            </ion-list>
+          
+            <!--Moto-->
+            <ion-list *ngSwitchCase="'moto'">
+              <!-- Exibe somente se a variavel tenha o valor = visitante -->
+
+              <ion-list-header class="fundo3">Limpeza da Moto</ion-list-header>
+              <ion-card>
+
+                <ion-radio-group>
+                  <ion-item>
+                    <ion-label>Completo</ion-label>
+                    <ion-chip slot="end">R$200,00</ion-chip>
+                    <ion-radio slot="end" value="200" checked></ion-radio>
+                  </ion-item>
+              
+                  <ion-item>
+                    <ion-label>Simples</ion-label>
+                    <ion-chip slot="end">R$20,00</ion-chip>
+                    <ion-radio slot="end" value="20"></ion-radio>
+                  </ion-item>
+              
+                  <ion-item>
+                    <ion-label>A seco</ion-label>
+                    <ion-chip slot="end">R$80,00</ion-chip>
+                    <ion-radio slot="end" value="80"></ion-radio>
+                  </ion-item>
+                </ion-radio-group>
+              </ion-card>
+
+              <ion-card>
+                  <ion-list>
+                    <ion-item *ngFor="let limpeza of listaTipoLimpezaMoto">
+                      <ion-label>{{limpeza.nome}}</ion-label>
+                      <ion-checkbox slot="end" [(ngModel)]="limpeza.isChecked"></ion-checkbox>
+                    </ion-item>
+                  </ion-list>
+                </ion-card>
+
+
+          <!--Acrescimo
+              <ion-item *ngFor="let itemDaLista of listaVeiculo" style="text-align: center">
+                  <ion-item lines="full" [routerLink]="itemDaLista.pagina">
+                  <span slot="start" >{{itemDaLista.nome}}</span>
+                  <ion-chip slot="end">R$ {{itemDaLista.valor}},00</ion-chip>
+          
+                  </ion-item>
+              </ion-item>
+            -->
+            </ion-list>
+          </div>
+
+
+     <!--nova pagina-->
+
+    
+
+
+    <p class="ion-padding-start ion-padding-end"></p>
+
+    <div>
+        <ion-button expand="full" type="ion-button" routerLink="/app/tabs/speakers" slot="end" name="speaker">Pagamento</ion-button>
+    </div>
+  </ion-list>
+  
+</ion-content>

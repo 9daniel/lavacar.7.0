@@ -1,0 +1,67 @@
+.about-header {
+  padding: 16px;
+  width: 100%;
+  height: 30%;
+
+}
+
+
+p{
+  text-align: center;
+}
+
+.linha1{
+  height: 1px;
+  clear: both;
+  overflow: hidden;
+  background-color: rgb(189, 183, 183);
+}
+
+.linha2{
+  height: 5px;
+  clear: both;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.btnl {
+  float: left;
+  position: relative;
+  left: 8% ;
+  width: 50%;
+  height: 80%;
+  
+}
+
+h6{
+  position: relative;
+  left: 8% ;
+}
+
+.btnEnviar{
+  position: relative;
+  left: 55%;
+  
+}
+.fundo1{
+  background-color:#006699;
+  color:white;
+}
+
+.fundo2{
+  background-color:#333366;
+  color:white;
+}
+
+.fundo3{
+  background-color: #003399;
+  color:white;
+}
+.fundoCinza{
+  background-color: #a3a4a7;
+  color:rgb(2, 2, 2);
+  text-align: center;
+}
+.tamanhoTest{
+  min-width: 40px;
+}

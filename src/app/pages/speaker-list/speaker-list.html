@@ -1,0 +1,162 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Pagamento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-card>
+
+    <ion-item class="border12">
+      <label slot="start">Dia</label>
+      <span slot="end">18.06</span>  
+    </ion-item>
+
+    <ion-item class="border12">
+       <label slot="start">Horário</label>
+       <span slot="end">13:00</span>  
+    </ion-item>
+
+    <ion-item class="border12">
+      <label slot="start">Veículo</label>
+      <span slot="end">{{automovel.tipo}}</span>  
+    </ion-item>
+
+    <ion-item class="border12">
+      <label slot="start">Tipo</label>
+      <span slot="end">Completa</span>
+    </ion-item>
+
+    <ion-item class="border12">
+      <label slot="start">Total</label>
+      <span slot="end">R$ 350,00</span>
+    </ion-item>
+    </ion-card>
+
+    <ion-card>
+      <ion-item>
+        <ion-icon name="man" slot="start"></ion-icon>
+        <ion-label position="stacked">Precisa de um funcionário para pegar seu veiculo ?</ion-label>
+        <ion-select>
+            <ion-select-option value="nNecessario" selected>Não é necessário</ion-select-option>
+          <ion-select-option value="entrega">Apenas Entregar</ion-select-option>
+          <ion-select-option value="buscar">Apenas Buscar</ion-select-option>
+          <ion-select-option value="entregarBuscar">Buscar e Entregar</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card>
+
+    <ion-item *ngFor="let itemDaLista of listaPaga" style="text-align: center">
+        <ion-item lines="full" [routerLink]="itemDaLista.pagina" (click)=" tipoPagamento = itemDaLista.tipo" >
+        <span class="tamanhoTest">{{itemDaLista.nome}}</span>
+        <ion-thumbnail slot="start"><ion-img [src]="itemDaLista.img"></ion-img></ion-thumbnail> 
+        </ion-item>
+    </ion-item>
+
+    <div [ngSwitch]="tipoPagamento">
+        
+        <!--Carro-->
+        <ion-list *ngSwitchCase="'cartao'">
+          <!-- Exibe somente se a variavel tenha o valor = usuario -->
+          <ion-list-header class="fundo1">Selecione o Cartão</ion-list-header>
+
+          <ion-card>
+            <ion-radio-group>
+              <ion-item>
+                  <ion-thumbnail slot="start">
+                      <img src="assets/img/cartao/bradesco.png"/>
+                    </ion-thumbnail>
+                <ion-chip >Bradesco</ion-chip>
+                <ion-radio slot="end" value="1" checked></ion-radio>
+              </ion-item>
+          
+              <ion-item>
+                  <ion-thumbnail slot="start">
+                      <img src="assets/img/cartao/itau.png"/>
+                    </ion-thumbnail>
+                <ion-chip >Itaú</ion-chip>
+                <ion-radio slot="end" value="2"></ion-radio>
+              </ion-item>
+          
+              <ion-item>
+                  <ion-thumbnail slot="start">
+                      <img src="assets/img/cartao/caixa.png"/>
+                    </ion-thumbnail>
+                <ion-chip >Caixa</ion-chip>
+                <ion-radio slot="end" value="3"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                  <ion-thumbnail slot="start">
+                      <img src="assets/img/cartao/cielo.jpg"/>
+                    </ion-thumbnail>
+                  <ion-chip >Cielo</ion-chip>
+                  <ion-radio slot="end" value="4"></ion-radio>
+                </ion-item>
+
+                <ion-item>
+                    <ion-thumbnail slot="start">
+                        <img src="assets/img/cartao/santander.jpg"/>
+                      </ion-thumbnail>
+                    <ion-chip >Santander</ion-chip>
+                    <ion-radio slot="end" value="5"></ion-radio>
+                  </ion-item>
+
+                  <ion-item>
+                      <ion-thumbnail slot="start">
+                          <img src="assets/img/cartao/visa.jpg"/>
+                        </ion-thumbnail>
+                      <ion-chip >Visa</ion-chip>
+                      <ion-radio slot="end" value="6"></ion-radio>
+                    </ion-item>
+
+            </ion-radio-group>
+          </ion-card>
+
+          <ion-item>
+              <ion-label position="stacked" color="primary">Número da conta:</ion-label>
+              <ion-input name="numeroConta" type="text" placeholder="EX: 5371 9342 3843 1043" >
+              </ion-input>
+            </ion-item>
+      
+
+        </ion-list>
+
+          <ion-list *ngSwitchCase="'dinheiro'">
+
+              <ion-card>
+                  <ion-item>
+                    <ion-icon name="calculador" slot="start"></ion-icon>
+                    <ion-label position="stacked">Vai precisar de troco ?</ion-label>
+                    <ion-select>
+                      <ion-select-option value="sim">Sim</ion-select-option>
+                      <ion-select-option value="nao"selected>Não</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-card> 
+
+                <ion-item>
+                    <ion-label position="stacked" color="primary">Valor para troco:</ion-label>
+                    <ion-input name="troco" type="text" placeholder="EX: 35,00" >
+                    </ion-input>
+                  </ion-item>
+
+          </ion-list>
+
+      </div>
+
+
+  <div class="centro">
+        <ion-button routerLink="/app/tabs/about" size="DEFAULT" color="primary">Voltar</ion-button>
+        <ion-button routerLink="/app/tabs/schedule" (click)="dadosCompra()" size="DEFAULT" color="primary">Confirmar</ion-button>
+      </div>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <img src="/assets/img/speakers/pagamento.png">  
+    </ion-toolbar>
+  </ion-footer>
